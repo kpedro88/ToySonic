@@ -1,5 +1,5 @@
-#ifndef ToySonic_Jet
-#define ToySonic_Jet
+#ifndef ToySonic_Formats_Jet
+#define ToySonic_Formats_Jet
 
 #include <vector>
 

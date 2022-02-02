@@ -1,5 +1,5 @@
-#ifndef ToySonic_Span
-#define ToySonic_Span
+#ifndef ToySonic_Core_Span
+#define ToySonic_Core_Span
 
 //from https://github.com/cms-sw/cmssw/blob/master/FWCore/Utilities/interface/Span.h
 #include <cstddef>

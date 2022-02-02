@@ -1,8 +1,8 @@
-#ifndef ToySonic_SonicProducer
-#define ToySonic_SonicProducer
+#ifndef ToySonic_Sonic_SonicProducer
+#define ToySonic_Sonic_SonicProducer
 
 #include <memory>
-#include "Producer.h"
+#include "Core/include/Producer.h"
 #include "Client.h"
 
 class SonicProducer : public Producer {

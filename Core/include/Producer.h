@@ -1,5 +1,5 @@
-#ifndef ToySonic_Producer
-#define ToySonic_Producer
+#ifndef ToySonic_Core_Producer
+#define ToySonic_Core_Producer
 
 #include "Event.h"
 

@@ -1,9 +1,9 @@
-#ifndef ToySonic_JetProducer
-#define ToySonic_JetProducer
+#ifndef ToySonic_Jets_JetProducer
+#define ToySonic_Jets_JetProducer
 
 #include <random>
-#include "Event.h"
-#include "Producer.h"
+#include "Core/include/Event.h"
+#include "Core/include/Producer.h"
 
 class JetProducer : public Producer {
 public:

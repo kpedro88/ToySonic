@@ -1,10 +1,10 @@
-#ifndef ToySonic_JetTagger
-#define ToySonic_JetTagger
+#ifndef ToySonic_Jets_JetTagger
+#define ToySonic_Jets_JetTagger
 
 #include <algorithm>
 #include <memory>
-#include "SonicProducer.h"
-#include "Client.h"
+#include "Sonic/include/SonicProducer.h"
+#include "Sonic/include/Client.h"
 
 class JetTagger : public SonicProducer {
 public:

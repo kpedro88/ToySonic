@@ -1,5 +1,5 @@
-#ifndef ToySonic_Callback
-#define ToySonic_Callback
+#ifndef ToySonic_Core_Callback
+#define ToySonic_Core_Callback
 
 //forward declaration
 class Event;

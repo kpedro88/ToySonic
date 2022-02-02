@@ -1,8 +1,8 @@
-#ifndef ToySonic_Client
-#define ToySonic_Client
+#ifndef ToySonic_Sonic_Client
+#define ToySonic_Sonic_Client
 
 #include <vector>
-#include "Callback.h"
+#include "Core/include/Callback.h"
 #include "Data.h"
 #include "InferClient.h"
 #include "InferInput.h"

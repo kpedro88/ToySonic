@@ -2,10 +2,10 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
-#include "include/Callback.h"
-#include "include/Event.h"
-#include "include/JetProducer.h"
-#include "include/JetTagger.h"
+#include "Core/include/Callback.h"
+#include "Core/include/Event.h"
+#include "Jets/include/JetProducer.h"
+#include "Jets/include/JetTagger.h"
 
 void run() {
 	//define list of events

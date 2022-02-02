@@ -1,9 +1,9 @@
-#ifndef ToySonic_Event
-#define ToySonic_Event
+#ifndef ToySonic_Core_Event
+#define ToySonic_Core_Event
 
 #include <vector>
-#include "Jet.h"
-#include "Discr.h"
+#include "Formats/include/Jet.h"
+#include "Formats/include/Discr.h"
 
 class Event {
 public:

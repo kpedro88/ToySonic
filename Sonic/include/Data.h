@@ -1,5 +1,5 @@
-#ifndef ToySonic_Data
-#define ToySonic_Data
+#ifndef ToySonic_Sonic_Data
+#define ToySonic_Sonic_Data
 
 #include <algorithm>
 #include <exception>
@@ -7,7 +7,7 @@
 #include <vector>
 #include "InferInput.h"
 #include "InferOutput.h"
-#include "Span.h"
+#include "Core/include/Span.h"
 
 //forward declaration
 class Client;

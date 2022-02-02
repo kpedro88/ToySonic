@@ -1,5 +1,5 @@
-#ifndef ToySonic_Discr
-#define ToySonic_Discr
+#ifndef ToySonic_Formats_Discr
+#define ToySonic_Formats_Discr
 
 #include <vector>
 
