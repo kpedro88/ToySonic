@@ -1,13 +1,18 @@
 #ifndef ToySonic_Callback
 #define ToySonic_Callback
 
+//forward declaration
+class Event;
+
 class Callback {
 public:
-	Callback(const std::function<void()> func) : func_(func) {}
-	void doneWaiting() { func_(); }
+	Callback(const std::function<void()> func, void* obj, Event* event) : func_(func), obj_(obj), event_(event) {}
+	void doneWaiting() { func_(obj_, event_); }
 
 private:
 	std::function<void()> func_;
+	void* obj_;
+	Event* event_;
 };
 
 /*
