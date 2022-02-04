@@ -15,7 +15,7 @@ class Client {
 public:
 	using Input = InputData;
 	using Output = OutputData;
-	Client(const InputData::ShapeType& input_dims, const OutputData::ShapeType& output_dims) : input_(input_dims), output_(output_dims) {}
+	Client(const InputData::ShapeType& input_dims, const OutputData::ShapeType& output_dims) : batchSize_(0), input_(input_dims), output_(output_dims) {}
 	void setBatchSize(unsigned bsize) {
 		batchSize_ = bsize;
 		input_.setBatchSize(bsize);
@@ -34,21 +34,21 @@ public:
 			return;
 		}
 
-		InferResult* results;
+		auto results_ptr = std::make_shared<InferResult>();
+		auto results = results_ptr.get();
 		//hack because there's no server
 		results->SetShape(output_.fullShape_);
 		client_.Infer(&results, input_.data(), output_.data());
 
-		getResults(results);
+		getResults(results_ptr);
 		finish();
 	}
-	void getResults(InferResult* results){
+	void getResults(std::shared_ptr<InferResult> results){
 		//account for batch dimension
 		auto tmp_shape = results->Shape();
 		tmp_shape.erase(tmp_shape.begin());
 		output_.setShape(tmp_shape);
-		std::shared_ptr<InferResult> results_ptr(results);
-		output_.setResult(results_ptr);
+		output_.setResult(results);
 	}
 	void finish() {
 		if (holder_) {
