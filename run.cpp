@@ -28,6 +28,7 @@ void run() {
 
 		//print some info about this event
 		std::copy(event.discrs().begin(), event.discrs().end(), std::ostream_iterator<Discr>(std::cout, ", "));
+		std::cout << std::endl;
 	}
 }
 

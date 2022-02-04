@@ -37,7 +37,9 @@ public:
 		auto results_ptr = std::make_shared<InferResult>();
 		auto results = results_ptr.get();
 		//hack because there's no server
-		results->SetShape(output_.fullShape_);
+		auto tmp_shape = output_.fullShape_;
+		tmp_shape[0] = batchSize_;
+		results->SetShape(tmp_shape);
 		client_.Infer(&results, input_.data(), output_.data());
 
 		getResults(results_ptr);
