@@ -20,7 +20,7 @@ public:
 			const int* constituents = reinterpret_cast<const int*>(buf);
     		//just implements an arbitrary algorithm
             float tmp = 0;
-            for (unsigned c = 0; c < (*result)->Shape().back(); ++c) {
+            for (unsigned c = 0; c < input->Shape().back(); ++c) {
                 tmp += constituents[c];
             }
             results_.push_back(tmp);
