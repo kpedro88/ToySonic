@@ -1,13 +1,15 @@
 #ifndef ToySonic_Sonic_Client
 #define ToySonic_Sonic_Client
 
+#include <memory>
+#include <optional>
 #include <vector>
 #include "Core/include/Callback.h"
 #include "Data.h"
-#include "InferClient.h"
-#include "InferInput.h"
-#include "InferOutput.h"
-#include "InferResult.h"
+#include "Infer/include/InferClient.h"
+#include "Infer/include/InferInput.h"
+#include "Infer/include/InferOutput.h"
+#include "Infer/include/InferResult.h"
 
 class Client {
 public:
@@ -35,7 +37,7 @@ public:
 		InferResult* results;
 		//hack because there's no server
 		results->SetShape(output_.fullShape_);
-		client_->Infer(&results, input_.data(), output_.data());
+		client_.Infer(&results, input_.data(), output_.data());
 
 		getResults(results);
 		finish();
@@ -45,13 +47,16 @@ public:
 		auto tmp_shape = results->Shape();
 		tmp_shape.erase(tmp_shape.begin());
 		output_.setShape(tmp_shape);
-		output_.setResult(results);
+		std::shared_ptr<InferResult> results_ptr(results);
+		output_.setResult(results_ptr);
 	}
 	void finish() {
-		holder_.doneWaiting();
+		if (holder_) {
+			holder_->doneWaiting();
+		}
 	}
 	void reset() {
-		client_.reset();
+		client_.Reset();
 		input_.reset();
 		output_.reset();
 	}
@@ -65,7 +70,7 @@ private:
 	unsigned batchSize_;
 	Input input_;
 	Output output_;
-	Callback holder_;
+	std::optional<Callback> holder_;
 
 	InferClient client_;
 };

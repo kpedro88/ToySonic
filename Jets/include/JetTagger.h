@@ -3,13 +3,14 @@
 
 #include <algorithm>
 #include <memory>
+#include <vector>
 #include "Sonic/include/SonicProducer.h"
 #include "Sonic/include/Client.h"
 
 class JetTagger : public SonicProducer {
 public:
 	JetTagger() : SonicProducer() {
-		client_ = std::make_unique<Client>({10,1,-1},{10,1});
+		client_ = std::make_unique<Client>(std::vector<int64_t>({10,1,-1}),std::vector<int64_t>({10,1}));
 	}
 	void acquire(const Event& iEvent, Client::Input& iInput) override {
 		const auto& jets = iEvent.jets();

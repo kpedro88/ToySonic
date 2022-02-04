@@ -9,7 +9,6 @@ class JetProducer : public Producer {
 public:
 	JetProducer() {}
 	//nothing to acquire here
-	void acquire(const Event& iEvent, Callback holder) override { holder.doneWaiting(); }
 	void produce(Event& iEvent) override {
 		//seed based on event number
 		std::mt19937 rng(iEvent.number());
@@ -22,7 +21,8 @@ public:
 		JetCollection coll; coll.reserve(njets);
 		for(int i = 0; i < njets; ++i){
 			int nconst = randint(rng);
-			coll.push_back(nconst, i);
+			std::vector<int> tmp(nconst, i);
+			coll.insert(coll.end(), tmp);
 		}
 
 		//add to event

@@ -5,8 +5,9 @@
 
 class Producer {
 public:
-	Producer() = 0;
-	virtual void acquire(const Event& iEvent, Callback holder) = 0;
+	Producer() {}
+	//default behavior: no acquire step
+	virtual void acquire(const Event& iEvent, Callback holder) { holder.doneWaiting(); }
 	virtual void produce(Event& iEvent) = 0;
 };
 

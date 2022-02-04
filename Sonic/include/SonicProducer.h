@@ -7,7 +7,7 @@
 
 class SonicProducer : public Producer {
 public:
-	Producer() = 0;
+	SonicProducer() {}
 	void acquire(const Event& iEvent, Callback holder) final {
 		acquire(iEvent, client_->input());
 		client_->dispatch(holder);

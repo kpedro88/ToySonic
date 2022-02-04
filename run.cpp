@@ -17,7 +17,7 @@ void run() {
 	for (auto& event : events) {
 		for (auto& producer : producers) {
 			//create callback for produce
-			Callback holder([](void* obj, Event& ev){ obj->produce(ev); }, &producer, &event);
+			Callback holder([](Producer* obj, Event* ev){ obj->produce(*ev); }, producer, &event);
 
 			//first step: acquire
 			producer->acquire(event, holder);

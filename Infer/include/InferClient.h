@@ -12,18 +12,18 @@ public:
     void Reset() { results_.clear(); }
 	void Infer(InferResult** result, InferInput* input, InferOutput* output) {
 		bool end_of_input = false;
-		for (unsigned i = 0; i < (*results)->Shape()[0]; ++i) {
+		for (unsigned i = 0; i < (*result)->Shape()[0]; ++i) {
 			const uint8_t* buf;
 			size_t buf_size;
 			input->GetNext(&buf, &buf_size, &end_of_input);
 			//convert back to int
 			const int* constituents = reinterpret_cast<const int*>(buf);
     		//just implements an arbitrary algorithm
-            float result = 0;
-            for (unsigned c = 0; c < (*results)->Shape().back(); ++c) {
-                result += constituents[c];
+            float tmp = 0;
+            for (unsigned c = 0; c < (*result)->Shape().back(); ++c) {
+                tmp += constituents[c];
             }
-            results.push_back(result);
+            results_.push_back(tmp);
 		}
 
         (*result)->buffer_ = reinterpret_cast<const uint8_t*>(results_.data());
@@ -31,7 +31,7 @@ public:
 	}
 
 private:
-    vector<float> results_;
+    std::vector<float> results_;
 };
 
 #endif

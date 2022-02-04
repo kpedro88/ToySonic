@@ -5,9 +5,9 @@
 
 class InferInput {
 public:
-	InferInput() : bufs_idx(0), buf_pos_(0) {}
+	InferInput() : bufs_idx_(0), buf_pos_(0) {}
 	const std::vector<int64_t>& Shape() const { return shape_; }
-	void SetShape(const std::vector<int64_t>& dims) { shape_ = shape; }
+	void SetShape(const std::vector<int64_t>& dims) { shape_ = dims; }
 	void Reset() {
 		bufs_.clear();
 		buf_byte_sizes_.clear();
@@ -15,8 +15,6 @@ public:
 		buf_pos_ = 0;
 	}
 	void AppendRaw(const uint8_t* input, size_t input_byte_size) {
-		byte_size_ += input_byte_size;
-
 		bufs_.push_back(input);
 		buf_byte_sizes_.push_back(input_byte_size);
 	}
