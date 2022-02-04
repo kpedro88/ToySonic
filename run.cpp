@@ -27,6 +27,14 @@ void run() {
 		}
 
 		//print some info about this event
+		std::cout << "Event " << event.number() << ":" << std::endl;
+		for (unsigned j = 0; j < event.jets().size(); ++j) {
+			std::cout << "\tJet " << j << ": ";
+			const auto& constituents = event.jets()[j].constituents();
+			std::copy(constituents.begin(), constituents.end(), std::ostream_iterator<int>(std::cout, ", "));
+			std::cout << std::endl;
+		}
+		std::cout << "\tDiscrs: ";
 		std::copy(event.discrs().begin(), event.discrs().end(), std::ostream_iterator<Discr>(std::cout, ", "));
 		std::cout << std::endl;
 	}
