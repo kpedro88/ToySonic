@@ -33,20 +33,25 @@ public:
 		}
 
 		InferResult* results;
+		//hack because there's no server
+		results->SetShape(output_.fullShape_);
 		client_->Infer(&results, input_.data(), output_.data());
 
 		getResults(results);
 		finish();
 	}
 	void getResults(InferResult* results){
-		//populate results with data
-		output_.setShape(results->Shape());
+		//account for batch dimension
+		auto tmp_shape = results->Shape();
+		tmp_shape.erase(tmp_shape.begin());
+		output_.setShape(tmp_shape);
 		output_.setResult(results);
 	}
 	void finish() {
 		holder_.doneWaiting();
 	}
 	void reset() {
+		client_.reset();
 		input_.reset();
 		output_.reset();
 	}
