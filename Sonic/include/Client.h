@@ -34,13 +34,13 @@ public:
 			return;
 		}
 
-		auto results_ptr = std::make_shared<InferResult>();
-		auto results = results_ptr.get();
-		//hack because there's no server
-		client_.Infer(&results, input_.data(), output_.data());
-
-		getResults(results_ptr);
-		finish();
+		client_.AsyncInfer(
+			[this](InferResult* results) {
+				std::shared_ptr<InferResult> results_ptr(results);
+				getResults(results_ptr);
+				finish();
+			}, input_.data(), output_.data()
+		);
 	}
 	void getResults(std::shared_ptr<InferResult> results){
 		//in real version: set output shape to result shape
