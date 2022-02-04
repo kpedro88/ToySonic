@@ -37,19 +37,13 @@ public:
 		auto results_ptr = std::make_shared<InferResult>();
 		auto results = results_ptr.get();
 		//hack because there's no server
-		auto tmp_shape = output_.fullShape_;
-		tmp_shape[0] = batchSize_;
-		results->SetShape(tmp_shape);
 		client_.Infer(&results, input_.data(), output_.data());
 
 		getResults(results_ptr);
 		finish();
 	}
 	void getResults(std::shared_ptr<InferResult> results){
-		//account for batch dimension
-		auto tmp_shape = results->Shape();
-		tmp_shape.erase(tmp_shape.begin());
-		output_.setShape(tmp_shape);
+		//in real version: set output shape to result shape
 		output_.setResult(results);
 	}
 	void finish() {

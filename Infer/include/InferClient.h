@@ -12,7 +12,7 @@ public:
     void Reset() { results_.clear(); }
 	void Infer(InferResult** result, InferInput* input, InferOutput* output) {
 		bool end_of_input = false;
-		for (unsigned i = 0; i < (*result)->Shape()[0]; ++i) {
+		for (unsigned i = 0; i < input->Shape()[0]; ++i) {
 			const uint8_t* buf;
 			size_t buf_size;
 			input->GetNext(&buf, &buf_size, &end_of_input);

@@ -9,8 +9,6 @@ class InferClient;
 class InferResult {
 public:
 	InferResult() : buffer_(nullptr), byte_size_(0) {}
-	void SetShape(const std::vector<int64_t>& dims) { shape_ = dims; }
-	const std::vector<int64_t>& Shape() const { return shape_; }
 	void RawData(const uint8_t** buf, size_t* byte_size) const {
 		*buf = buffer_;
 		*byte_size = byte_size_;
@@ -19,7 +17,6 @@ public:
 private:
 	friend InferClient;
 
-	std::vector<int64_t> shape_;
 	const uint8_t* buffer_;
 	uint32_t byte_size_;
 };

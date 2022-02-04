@@ -79,6 +79,7 @@ private:
 	unsigned fullLoc(unsigned loc) const { return loc + 1; }
 	void setBatchSize(unsigned bsize) {
 		batchSize_ = bsize;
+		fullShape_[0] = batchSize_;
 	}
 	void reset();
 	void setResult(std::shared_ptr<InferResult> result) { result_ = result; }
